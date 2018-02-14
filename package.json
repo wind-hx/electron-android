@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "author": "hexu <745764370@qq.com>",
   "description": "An electron-vue project",
-  "license": null,
+  "license": "ISC",
   "main": "./dist/electron/main.js",
   "scripts": {
     "build": "node .electron-vue/build.js",
