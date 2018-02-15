@@ -45,7 +45,8 @@
         var rule = new schedule.RecurrenceRule();
         var times = [];
         for(var i = 1; i < 60; i++){
-        　　times.push(i);
+            times.push(i);
+            times.push(i + 0.5);
         }
         rule.second = times;
         schedule.scheduleJob(rule, async () => {
@@ -54,11 +55,23 @@
         
     }
 
+    function adbTap(serial, x, y) {
+        console.log("adbTap");
+        client.shell(serial, `input tap ${x} ${y}`);        
+    }
+
+    function adbSwipe(serial, oldX, oldY, newX, newY) {
+        console.log("adbTap");
+        client.shell(serial, `input swipe ${oldX} ${oldY} ${newX} ${newY}`);        
+    }
+
     let remoteApi = {
         exec: exec,
         execSync: execSync,
         checkConnectionTask: checkConnectionTask,
-        screencapTask: screencapTask
+        screencapTask: screencapTask,
+        adbTap: adbTap,
+        adbSwipe: adbSwipe
     }
 
     global.remoteApi = remoteApi;
