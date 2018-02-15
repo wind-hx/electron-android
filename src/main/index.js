@@ -1,4 +1,7 @@
-import { app, BrowserWindow } from 'electron'
+import electron from 'electron'
+
+let app = electron.app;
+let BrowserWindow = electron.BrowserWindow;
 
 /**
  * Set `__static` path to static files in production
@@ -13,14 +16,20 @@ const winURL = process.env.NODE_ENV === 'development'
   ? `http://localhost:9080`
   : `file://${__dirname}/index.html`
 
+
+
 function createWindow () {
   /**
    * Initial window options
    */
+  let screen = electron.screen;
+  let winW = screen.getPrimaryDisplay().workAreaSize.width
+  let winH = screen.getPrimaryDisplay().workAreaSize.height
+
   mainWindow = new BrowserWindow({
-    height: 400,
-    useContentSize: true,
-    width: 600
+    height: winH,
+    width: winW,
+    useContentSize: true
   })
 
   mainWindow.loadURL(winURL)
